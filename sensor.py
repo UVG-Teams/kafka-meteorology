@@ -25,4 +25,7 @@ def to_JSON():
 	relative_humidity = reading_RH()
 	direction = reading_wind_direction()
 	data = {"temperatura": temperature, "humedad": relative_humidity, "direccion_viento": direction}
-	return data
+	data_to_json = json.dumps(data)
+	return data_to_json
+
+to_JSON()
