@@ -25,7 +25,7 @@ def log():
 	direction = reading_wind_direction()
 
 	return {
-		"temperatura": temperature,
-		"humedad": relative_humidity,
-		"direccion_viento": direction
+		"t": temperature,
+		"h": relative_humidity,
+		"w": direction
 	}

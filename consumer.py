@@ -4,8 +4,6 @@
 # Jennifer Sandoval	18962
 # Francisco Rosal	18676
 
-import sys
-import json
 import logging
 from kafka import KafkaConsumer
 
@@ -16,8 +14,24 @@ logging.basicConfig(format='%(message)s \n', level = logging.INFO)
 logging.info('Starting consumer')
 consumer = KafkaConsumer('meteorology-18676', bootstrap_servers=['20.120.14.159:9092'])
 
-for msg in consumer:
+def special_decode(payload):
+    wind_options = ['N','NW','W','SW','S','SE','E','NE']
 
-    current_log = json.loads(msg.value)
-    logging.info('Received message: {}'.format(current_log))
-    # logging.info("Payload size is {} bytes".format(sys.getsizeof(msg.value)))
+    log = payload.decode('ASCII')
+    data = []
+    for i in log:
+        data.append(i)
+
+    temperature = ord(data[0])
+    humidity = ord(data[1])
+    wind = wind_options[ord(data[2]) - 100]
+
+    return temperature, humidity, wind
+
+
+for msg in consumer:
+    logging.info('Received message: {}'.format(msg.value))
+    logging.info("Payload size is {} bytes".format(len(msg.value)))
+
+    current_log = special_decode(msg.value)
+    logging.info('LOG: {}'.format(current_log))
