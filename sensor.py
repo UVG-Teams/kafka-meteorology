@@ -4,8 +4,8 @@
 # Jennifer Sandoval	18962
 # Francisco Rosal	18676
 
-import json
 from pylab import *
+
 
 def reading_temperature():
 	return round(float(uniform(0, 100.00, 1)),2)
