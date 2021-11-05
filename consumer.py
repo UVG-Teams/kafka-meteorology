@@ -26,12 +26,15 @@ def special_decode(payload):
     humidity = ord(data[1])
     wind = wind_options[ord(data[2]) - 100]
 
-    return temperature, humidity, wind
+    return {
+        "t": temperature,
+        "h": humidity,
+        "w": wind
+    }
 
 
 for msg in consumer:
     logging.info('Received message: {}'.format(msg.value))
-    logging.info("Payload size is {} bytes".format(len(msg.value)))
 
     current_log = special_decode(msg.value)
     logging.info('LOG: {}'.format(current_log))

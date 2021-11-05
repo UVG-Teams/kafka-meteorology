@@ -30,7 +30,7 @@ def special_encode(log):
 
 while True:
     current_log = sensor.log()
-    logging.info('Sending message: {}'.format(current_log))
+    logging.info('Sending log: {}'.format(current_log))
 
     payload = special_encode(current_log)
 
