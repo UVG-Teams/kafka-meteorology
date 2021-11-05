@@ -11,7 +11,8 @@ import logging
 from kafka import KafkaProducer
 
 SLEEP_TIME = 5
-logging.basicConfig(format='%(asctime)s :: %(levelname)s :: %(funcName)s :: %(lineno)d :: %(message)s \n', level = logging.INFO)
+# logging.basicConfig(format='%(asctime)s :: %(levelname)s :: %(funcName)s :: %(lineno)d :: %(message)s \n', level = logging.INFO)
+logging.basicConfig(format='%(message)s \n', level = logging.INFO)
 
 
 logging.info('Starting producer')
